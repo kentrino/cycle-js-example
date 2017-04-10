@@ -1,9 +1,33 @@
-import xs from 'xstream';
+import {Stream} from 'xstream';
 import {run} from '@cycle/run';
-import {div, button, h1, h4, a, makeDOMDriver} from '@cycle/dom';
-import {makeHTTPDriver} from '@cycle/http';
+import {div, button, h1, h4, a, makeDOMDriver, DOMSource} from '@cycle/dom';
+import {makeHTTPDriver, Response, HTTPSource} from '@cycle/http';
 
-function main(sources) {
+type UserData = {
+  id: number,
+  name: string,
+  username: string,
+  email: string,
+  address: {
+    street: string,
+    suite: string,
+    city: string,
+    zipcode: string,
+    geo: {
+      lat: string,
+      lng: string,
+    },
+  },
+  phone: string,
+  website: string,
+  company: {
+    name: string,
+    catchPhrase: string,
+    bs: string,
+  },
+};
+
+function main(sources: {DOM: DOMSource, HTTP: HTTPSource}) {
   const getRandomUser$ = sources.DOM.select('.get-random').events('click')
     .map(() => {
       const randomNum = Math.round(Math.random() * 9) + 1;

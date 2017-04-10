@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-  entry: ['./src/index.js'],
+  entry: ['./src/index.ts'],
   output: {
     path: path.join(__dirname, './dist'),
     filename: 'bundle.js'
@@ -10,22 +10,22 @@ module.exports = {
   // eval-source-map is faster for development
   devtool: '#eval-source-map',
   resolve: {
-    extensions: [".js", ".json", ".jsx"],
-    modules: [
-      path.join(__dirname, './src'),
+    extensions: [".ts", ".json", ".tsx", ".js"]
+    //modules: [  
+    //  path.join(__dirname, './src'),
       // WTF
-      "node_modules"
-    ]
+    //  "node_modules"
+    //]
   },
   module: {
-    loaders: [
+    rules: [
       {
-        test: /\.jsx?$/,
-        loaders: ['babel-loader'],
-        exclude: [/node_modules/]
+        test: /\.tsx?$/,
+        loader: 'ts-loader',
+        exclude: /node_modules/,
       }
     ]
-  },
+  },    
   plugins: [
     // new webpack.HotModuleReplacementPlugin()
   ]
