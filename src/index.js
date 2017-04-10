@@ -4,7 +4,9 @@ import {div, input, p, makeDOMDriver} from '@cycle/dom';
 
 function main(sources) {
   const sinks = {
-    DOM: xs.of(false)
+    DOM: sources.DOM.select('input').events('change')
+      .map(ev => ev.target.checked)
+      .startWith(false)
       .map(toggled =>
         div([
           input({attrs: {type: 'checkbox'}}), 'Toggle me',
