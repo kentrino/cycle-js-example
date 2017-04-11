@@ -10,12 +10,11 @@ module.exports = {
   // eval-source-map is faster for development
   devtool: '#eval-source-map',
   resolve: {
-    extensions: [".ts", ".json", ".tsx", ".js"]
-    //modules: [  
-    //  path.join(__dirname, './src'),
-      // WTF
-    //  "node_modules"
-    //]
+    extensions: [".ts", ".json", ".tsx", ".js"],
+    modules: [
+      path.resolve(__dirname, "src"),
+      "node_modules"
+    ]
   },
   module: {
     rules: [
