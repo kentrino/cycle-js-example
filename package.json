@@ -15,6 +15,7 @@
     "xstream": "^10.3.0"
   },
   "devDependencies": {
-    "ts-loader": "^2.0.3"
+    "ts-loader": "^2.0.3",
+    "webpack-dev-server": "^2.4.2"
   }
 }
